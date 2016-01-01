@@ -4,6 +4,8 @@
     "type": "https",
     "name": "R/a/dio Primary",
     "stream": "https://stream.r-a-d.io/main.mp3",
+    "max": 1200,
+    "priority": 100,
     "links": {
       "status": "https://stream.r-a-d.io/main.mp3.xspf"
     },
@@ -17,6 +19,8 @@
     "type": "http",
     "name": "Kilim's Relay",
     "stream": "http://kili.im:8000/a.mp3",
+    "max": 200,
+    "priority": 1,
     "links": {
       "status": "http://kili.im:8000/a.mp3.xspf"
     },
