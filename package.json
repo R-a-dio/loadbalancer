@@ -1,0 +1,17 @@
+{
+  "name": "radio.loadbalancer",
+  "version": "1.0.0",
+  "description": "Forwards an icecast entrypoint to multiple backends with keepalives",
+  "repository": "https://github.com/R-a-dio/loadbalancer",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Amelia Ikeda <amelia@r-a-d.io>",
+  "license": "MIT",
+  "dependencies": {
+    "lodash": "^3.10.1",
+    "xml2js": "^0.4.15"
+  }
+}

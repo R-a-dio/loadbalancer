@@ -1,0 +1,42 @@
+{
+  "radio": {
+    "active": true,
+    "type": "https",
+    "name": "R/a/dio Primary",
+    "stream": "https://relay.r-a-d.io/main.mp3",
+    "links": {
+      "status": "https://relay.r-a-d.io/main.mp3.xspf"
+    },
+    "owner": {
+      "name": "Amelia",
+      "email": "status@r-a-d.io"
+    }
+  },
+  "kilim": {
+    "active": false,
+    "type": "https",
+    "name": "Kilim's Relay",
+    "stream": "https://kili.im/main.mp3",
+    "links": {
+      "status": "https://kili.im/main.mp3.xspf"
+    },
+    "owner": {
+      "name": "Kilim",
+      "email": "kilim@kili.im"
+    }
+  },
+  "kilim-http": {
+      "active": true,
+      "type": "http",
+      "name": "Kilim's Relay",
+      "stream": "http://kili.im/a.mp3",
+      "links": {
+        "status": "http://kili.im/a.mp3.xspf"
+      },
+      "owner": {
+        "name": "Kilim",
+        "email": "kilim@kili.im"
+      }
+    },
+  }
+}
