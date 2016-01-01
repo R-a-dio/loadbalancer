@@ -1,11 +1,17 @@
-var relays = require('./relays.json');
-var http = require('http');
-var xml2js = require('xml2js').parseString;
-var _ = require('lodash');
+var relays = require('./relays.json'),
+    listeners = {},
+    fallback = "https://stream.r-a-d.io/main.mp3",
+    https = require('https'),
+    http = require('http'),
+    xml2js = require('xml2js').parseString,
+    _ = require('lodash');
 
 function check() {
-  _.forOwn(relays, function () {
-    http.get(relay.links.keepalive, function (res) {
+  _.forOwn(relays, function (relay, key) {
+    var client = relay.type == "https" ? https : http;
+
+    console.log("[" + key + "] pinging via " + relay.type);
+    client.get(relay.links.status, function (res) {
       var body = '';
 
       res.setEncoding("utf-8");
@@ -13,35 +19,49 @@ function check() {
 
       // actually process the body
       res.on("end", function () {
-        if (!body) return deactivate(relay);
-
-        var response = xml2js(body);
-        var tracks   = _.get(response, 'playlist.trackList');
-
-        if (tracks && tracks.length > 0) {
-          relay.active = true;
-          relay.listeners = listeners(_.get(tracks[0], 'track.annotation', ''));
-        } else {
-          deactivate(relay);
+        if (!body) {
+          console.log("[" + key + "] body not found");
+          return deactivate(key);
         }
+
+        xml2js(body, function (err, result) {
+          var tracks = _.get(result, 'playlist.trackList');
+
+          if (tracks.length > 0) {
+            var listeners = parser(_.get(tracks, '0.track.0.annotation.0', ''));
+
+            console.log("[" + key + "] listeners: " + listeners);
+            relays[key].active = true;
+            relays[key].listeners = listeners;
+            listeners[key] = listeners;
+          } else {
+            deactivate(key);
+          }
+        });
       })
-    }).on("error", function (e) { deactivate(relay) });
+    }).on("error", function (e) {
+      console.log("[" + key + "] transport error");
+      console.log(e);
+      deactivate(key);
+    });
   })
 }
 
-function deactivate(relay) {
-  relay.active = false;
-  relay.listeners = 0;
+function deactivate(key) {
+  console.log("[" + key + "] deactivating");
+  relays[key].active = false;
+  relays[key].listeners = 0;
+  listeners[key] = 0;
 }
 
-function listeners(annotation) {
-  var listeners = annotation.match(/Current Listeners: (\d+)/);
+function parser(annotation) {
+  var listeners = annotation.match(/Current Listeners: (\d+)/i);
 
-  return listeners ? listeners[0] : 0;
+  return listeners != null ? parseInt(listeners[1], 10) : 0;
 }
 
 function register() {
-  setTimeout(check, 10000);
+  setInterval(check, 10000);
 }
 
 function choose() {
@@ -49,11 +69,20 @@ function choose() {
 }
 
 function status() {
-  return relays
+  var count = 0;
+  for (key in listeners) {
+    count += listeners[key];
+  }
+
+  return {
+    relays: relays,
+    listeners: count
+  }
 }
 
 module.exports = {
   register: register,
   choose: choose,
-  relays: status
+  relays: status,
+  check: check
 }
