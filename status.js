@@ -60,10 +60,6 @@ function parser(annotation) {
   return listeners != null ? parseInt(listeners[1], 10) : 0;
 }
 
-function register() {
-  setInterval(check, 10000);
-}
-
 function choose() {
   // TODO: figure out how to assign priority + capacity
 }
@@ -81,7 +77,6 @@ function status() {
 }
 
 module.exports = {
-  register: register,
   choose: choose,
   relays: status,
   check: check
