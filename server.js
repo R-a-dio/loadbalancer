@@ -8,15 +8,16 @@ setInterval(function () {
 }, 6000);
 
 app.get('/', function (req, res) {
-  res.json({relays: status.alive(), server_time: new Date().toISOString()})
+  res.json({ server_time: new Date().toISOString() })
 });
 
 app.get('/main.mp3', function (req, res) {
   res.location(status.choose())
+  res.end()
 });
 
 app.get('/status.json', function (req, res) {
-  res.json(status.relays)
+  res.json(status.relays())
 });
 
 app.listen(3030);

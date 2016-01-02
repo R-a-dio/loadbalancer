@@ -10,7 +10,6 @@ function check() {
   _.forOwn(relays, function (relay, key) {
     var client = relay.type == "https" ? https : http;
 
-    console.log("[" + key + "] pinging via " + relay.type);
     client.get(relay.links.status, function (res) {
       var body = '';
 
@@ -28,12 +27,11 @@ function check() {
           var tracks = _.get(result, 'playlist.trackList');
 
           if (tracks.length > 0) {
-            var listeners = parser(_.get(tracks, '0.track.0.annotation.0', ''));
+            var count = parser(_.get(tracks, '0.track.0.annotation.0', ''));
 
-            console.log("[" + key + "] listeners: " + listeners);
             relays[key].active = true;
-            relays[key].listeners = listeners;
-            listeners[key] = listeners;
+            relays[key].listeners = count;
+            listeners[key] = count;
           } else {
             deactivate(key);
           }
@@ -66,6 +64,7 @@ function choose() {
 
 function status() {
   var count = 0;
+  console.log(listeners);
   for (key in listeners) {
     count += listeners[key];
   }
