@@ -1,10 +1,19 @@
-var relays = require('./relays.json'),
-    listeners = {},
-    fallback = "https://stream.r-a-d.io/main.mp3",
-    https = require('https'),
+var _ = require('lodash'),
     http = require('http'),
+    https = require('https'),
+    relays = require('./relays.json'),
     xml2js = require('xml2js').parseString,
-    _ = require('lodash');
+    args = require('minimist')(process.argv.slice(2));
+
+var listeners = {},
+    fallback = "https://stream.r-a-d.io/main.mp3",
+    chosen = fallback;
+
+function logger(message) {
+  if (args.v) {
+    console.log(message)
+  }
+}
 
 function check() {
   _.forOwn(relays, function (relay, key) {
@@ -19,7 +28,7 @@ function check() {
       // actually process the body
       res.on("end", function () {
         if (!body) {
-          console.log("[" + key + "] body not found");
+            logger("[" + key + "] body not found");
           return deactivate(key);
         }
 
@@ -38,15 +47,18 @@ function check() {
         });
       })
     }).on("error", function (e) {
-      console.log("[" + key + "] transport error");
-      console.log(e);
+      logger("[" + key + "] transport error");
+      logger(e);
       deactivate(key);
     });
-  })
+  });
+
+  chosen = pick();
+  logger("active relay is now " + chosen);
 }
 
 function deactivate(key) {
-  console.log("[" + key + "] deactivating");
+  logger("[" + key + "] deactivating");
   relays[key].active = false;
   relays[key].listeners = 0;
   listeners[key] = 0;
@@ -59,12 +71,38 @@ function parser(annotation) {
 }
 
 function choose() {
-  // TODO: figure out how to assign priority + capacity
+  return chosen;
+}
+
+function pick() {
+  var min = null;
+  var relay = undefined;
+
+  for (key in listeners) {
+    if (!relays[key].active) continue;
+    if (relays[key].type == "http") continue; // ignore http for now
+
+    var ratio = listeners[key] / relays[key].max;
+    ratio = ratio - (relays[key].priority / 1000);
+
+    logger("[" + key + "] ratio: " + ratio);
+
+    if (!min || ratio < min) {
+      min = ratio;
+      relay = key;
+    }
+  }
+
+  if (relay) {
+    return relays[relay].stream;
+  }
+
+  return fallback;
 }
 
 function status() {
   var count = 0;
-  console.log(listeners);
+  logger(listeners);
   for (key in listeners) {
     count += listeners[key];
   }
