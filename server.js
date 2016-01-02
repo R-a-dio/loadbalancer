@@ -12,8 +12,7 @@ app.get('/', function (req, res) {
 });
 
 app.get('/main.mp3', function (req, res) {
-  res.location(status.choose())
-  res.end()
+  res.redirect(302, status.choose())
 });
 
 app.get('/status.json', function (req, res) {
