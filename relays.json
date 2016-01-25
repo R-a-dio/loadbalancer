@@ -1,0 +1,47 @@
+{
+  "radio-mp3": {
+    "active": false,
+    "usable": true,
+    "name": "R/a/dio Primary",
+    "stream": "https://stream.r-a-d.io/main.mp3",
+    "max": 1200,
+    "priority": 100,
+    "links": {
+      "status": "https://stream.r-a-d.io/main.mp3.xspf"
+    },
+    "owner": {
+      "name": "Amelia",
+      "email": "status@r-a-d.io"
+    }
+  },
+  "kilim-mp3": {
+    "active": false,
+    "usable": false,
+    "name": "Kilim's Relay",
+    "stream": "http://kili.im:8000/a.mp3",
+    "max": 200,
+    "priority": 1,
+    "links": {
+      "status": "http://kili.im:8000/a.mp3.xspf"
+    },
+    "owner": {
+      "name": "Kilim",
+      "email": "kilim@kili.im"
+    }
+  },
+  "radio-ogg": {
+    "active": false,
+    "usable": false,
+    "name": "R/a/dio Ogg Stream",
+    "stream": "https://stream.r-a-d.io/main.ogg",
+    "max": 400,
+    "priority": 100,
+    "links": {
+      "status": "https://stream.r-a-d.io/main.ogg.xspf"
+    },
+    "owner": {
+      "name": "Amelia",
+      "email": "status@r-a-d.io"
+    }
+  }
+}
