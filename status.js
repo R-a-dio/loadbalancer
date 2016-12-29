@@ -6,7 +6,7 @@ let _ = require('lodash'),
     xml2js = require('xml2js').parseString,
     args = require('minimist')(process.argv.slice(2)),
     listeners = {},
-    fallback = "https://stream.r-a-d.io/main.mp3",
+    fallback = "https://relay0.r-a-d.io/main.mp3",
     chosen = fallback;
 
 function logger(message) {
