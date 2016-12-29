@@ -1,47 +1,62 @@
 {
-  "radio-mp3": {
-    "active": false,
+  "relay0.r-a-d.io": {
+    "active": true,
     "usable": true,
-    "name": "R/a/dio Primary",
-    "stream": "https://stream.r-a-d.io/main.mp3",
-    "max": 1200,
-    "priority": 100,
+    "name": "Relay 0",
+    "stream": "https://relay0.r-a-d.io/main.mp3",
+    "max": 1000,
+    "priority": 120,
     "links": {
-      "status": "https://stream.r-a-d.io/main.mp3.xspf"
+      "status": "https://relay0.r-a-d.io/main.mp3.xspf"
     },
     "owner": {
-      "name": "Amelia",
+      "name": "R/a/dio",
       "email": "status@r-a-d.io"
     }
   },
-  "kilim-mp3": {
-    "active": false,
-    "usable": false,
-    "name": "Kilim's Relay",
-    "stream": "http://kili.im:8000/a.mp3",
-    "max": 200,
-    "priority": 1,
+  "relay1.r-a-d.io": {
+    "active": true,
+    "usable": true,
+    "name": "Relay 1",
+    "stream": "https://relay1.r-a-d.io/a.mp3",
+    "max": 800,
+    "priority": 120,
     "links": {
-      "status": "http://kili.im:8000/a.mp3.xspf"
+      "status": "https://relay1.r-a-d.io/a.mp3.xspf"
     },
     "owner": {
-      "name": "Kilim",
-      "email": "kilim@kili.im"
+      "name": "R/a/dio",
+      "email": "status@r-a-d.io"
     }
   },
-  "radio-ogg": {
-    "active": false,
-    "usable": false,
-    "name": "R/a/dio Ogg Stream",
-    "stream": "https://stream.r-a-d.io/main.ogg",
-    "max": 400,
+  "relay3.dorks.io": {
+    "active": true,
+    "usable": true,
+    "name": "Relay 3",
+    "stream": "https://relay3.dorks.io/main.mp3",
+    "max": 450,
     "priority": 100,
     "links": {
-      "status": "https://stream.r-a-d.io/main.ogg.xspf"
+      "status": "https://relay3.dorks.io/main.mp3.xspf"
     },
     "owner": {
       "name": "Amelia",
-      "email": "status@r-a-d.io"
+      "email": "amelia@dorks.io"
+    }
+  },
+  "relay4.dorks.io": {
+    "active": true,
+    "usable": true,
+    "name": "Relay 4",
+    "stream": "https://relay4.dorks.io/main.mp3",
+    "max": 450,
+    "priority": 100,
+    "links": {
+      "status": "https://relay4.dorks.io/main.mp3.xspf"
+    },
+    "owner": {
+      "name": "Amelia",
+      "email": "amelia@dorks.io"
     }
   }
 }
