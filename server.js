@@ -1,7 +1,6 @@
 'use strict';
 
 const express = require('express');
-const parser = require('body-parser');
 const status = require('./modules/status');
 const app = express();
 const clc = require('cli-color');
