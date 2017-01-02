@@ -85,8 +85,9 @@ const status = () => {
 
     return {
         relays: relays,
-        total_listeners: count
-    }
+        total_listeners: count,
+        stream_url: chosen,
+    };
 };
 
 module.exports = {
