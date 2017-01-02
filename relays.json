@@ -1,62 +1,20 @@
 {
-  "relay0.r-a-d.io": {
-    "active": true,
-    "usable": true,
-    "name": "Relay 0",
-    "stream": "https://relay0.r-a-d.io/main.mp3",
+  "https://relay0.r-a-d.io/main.mp3": {
     "max": 1000,
-    "priority": 120,
-    "links": {
-      "status": "https://relay0.r-a-d.io/main.mp3.xspf"
-    },
-    "owner": {
-      "name": "R/a/dio",
-      "email": "status@r-a-d.io"
-    }
+    "priority": 120
   },
-  "relay1.r-a-d.io": {
-    "active": true,
-    "usable": true,
-    "name": "Relay 1",
-    "stream": "https://relay1.r-a-d.io/a.mp3",
+  "https://relay1.r-a-d.io/a.mp3": {
     "max": 800,
-    "priority": 120,
-    "links": {
-      "status": "https://relay1.r-a-d.io/a.mp3.xspf"
-    },
-    "owner": {
-      "name": "R/a/dio",
-      "email": "status@r-a-d.io"
-    }
+    "priority": 120
   },
-  "relay3.dorks.io": {
-    "active": true,
-    "usable": true,
-    "name": "Relay 3",
-    "stream": "https://relay3.dorks.io/main.mp3",
+  "https://relay3.dorks.io/main.mp3": {
+    "disabled": true,
     "max": 450,
-    "priority": 100,
-    "links": {
-      "status": "https://relay3.dorks.io/main.mp3.xspf"
-    },
-    "owner": {
-      "name": "Amelia",
-      "email": "amelia@dorks.io"
-    }
+    "priority": 100
   },
-  "relay4.dorks.io": {
-    "active": true,
-    "usable": true,
-    "name": "Relay 4",
-    "stream": "https://relay4.dorks.io/main.mp3",
+  "https://relay4.dorks.io/main.mp3": {
+    "disabled": true,
     "max": 450,
-    "priority": 100,
-    "links": {
-      "status": "https://relay4.dorks.io/main.mp3.xspf"
-    },
-    "owner": {
-      "name": "Amelia",
-      "email": "amelia@dorks.io"
-    }
+    "priority": 100
   }
 }

@@ -8,9 +8,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
-  "author": "Amelia Ikeda <amelia@r-a-d.io>",
+  "author": "Amelia Ikeda <amelia@dorks.io>",
   "license": "MIT",
   "dependencies": {
+    "clui": "^0.3.1",
     "express": "^4.13.3",
     "lodash": "^3.10.1",
     "minimist": "^1.2.0",
