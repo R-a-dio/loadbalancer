@@ -1,7 +1,7 @@
 const _ = require('lodash');
 const url = require('url');
 
-let original = require('./relays.json');
+let original = require('../relays.json');
 let relays = {};
 
 _.forOwn(original, (relay, key) => {
