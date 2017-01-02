@@ -14,7 +14,7 @@ setInterval(() => status.check(), 6000);
 setInterval(() => status.update(), 3000);
 
 app.get('/', (req, res) => res.json({server_time: new Date().toISOString()}));
-app.get('/main.mp3', (req, res) => res.redirect(302, status.choose()));
+app.get('/main.mp3', (req, res) => res.redirect(302, status.choose(req.headers['x-forwarded-proto'])));
 app.get('/status.json', (req, res) => res.json(status.relays()));
 
 app.listen(process.env.PORT || 3030, process.env.HOST || 'localhost');

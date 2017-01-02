@@ -9,7 +9,13 @@ const display = require('./display');
 let relays = require('./relays');
 let chosen = fallback;
 
-const choose = () => chosen;
+const choose = scheme => {
+    if (scheme) {
+        return chosen.replace(/^[^:]*/, scheme);
+    }
+
+    return chosen;
+};
 const update = () => display.update(relays, chosen);
 
 const check = () => _.forOwn(relays, relay => {
