@@ -58,7 +58,9 @@ function parser(annotation) {
   return listeners != null ? parseInt(listeners[1], 10) : 0;
 }
 
-function choose() {
+function choose(scheme) {
+  if (scheme)
+    return chosen.replace(/^[^:]*/, scheme);
   return chosen;
 }
 
