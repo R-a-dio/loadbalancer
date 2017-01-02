@@ -17,7 +17,7 @@ app.get('/', (req, res) => res.json({server_time: new Date().toISOString()}));
 app.get('/main.mp3', (req, res) => res.redirect(302, status.choose()));
 app.get('/status.json', (req, res) => res.json(status.relays()));
 
-app.listen(process.env.PORT || 3030);
+app.listen(process.env.PORT || 3030, process.env.HOST || 'localhost');
 
 // const management = express();
 // const config = require('./config');
