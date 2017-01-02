@@ -85,7 +85,7 @@ const status = () => {
 
     return {
         relays: relays,
-        total_listeners: count,
+        listeners: count,
         stream_url: chosen,
     };
 };
