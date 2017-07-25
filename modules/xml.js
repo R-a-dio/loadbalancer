@@ -13,7 +13,7 @@ const parseXml = (success, failure) => {
     return (err, result) => {
         let tracks = _.get(result, 'playlist.trackList');
 
-        if (tracks.length <= 0 || err) {
+        if (!tracks || tracks.length <= 0 || err) {
             return failure(err);
         }
 
