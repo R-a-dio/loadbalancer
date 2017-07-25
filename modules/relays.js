@@ -9,6 +9,7 @@ _.forOwn(original, (relay, key) => {
         online: null,
         primary: false,
         disabled: relay.disabled || false,
+        noredir: relay.noredir || false,
         listeners: 0,
         max: relay.max,
         priority: relay.priority,

@@ -61,7 +61,7 @@ const pick = () => {
     let candidate = undefined;
 
     _.forOwn(relays, relay => {
-        if (!relay.online || relay.disabled) {
+        if (!relay.online || relay.noredir || relay.disabled) {
             return;
         }
 

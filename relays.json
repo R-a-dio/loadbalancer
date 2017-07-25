@@ -4,6 +4,7 @@
     "priority": 120
   },
   "https://relay1.r-a-d.io/a.mp3": {
+    "noredir": true,
     "max": 800,
     "priority": 120
   },
