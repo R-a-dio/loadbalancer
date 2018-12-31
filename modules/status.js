@@ -3,6 +3,7 @@
 const _ = require('lodash');
 const request = require('request');
 const fallback = process.env.FALLBACK_URL || "https://relay0.r-a-d.io/main.mp3";
+const push_url = process.env.PUSH_URL || "";
 const xml = require('./xml');
 const display = require('./display');
 
@@ -18,19 +19,24 @@ const choose = scheme => {
 };
 const update = () => display.update(relays, chosen);
 
-const check = () => _.forOwn(relays, relay => {
-    if (relay.disabled) {
-        return;
-    }
-
-    request(relay.links.status, (error, res, body) => {
-        if (error || !body.length) {
-            return deactivate(relay);
+const check = () => {
+     _.forOwn(relays, relay => {
+        if (relay.disabled) {
+            return;
         }
 
-        xml.parse(body, count => activate(relay, count), () => deactivate(relay));
+        request(relay.links.status, (error, res, body) => {
+            if (error || !body.length) {
+                return deactivate(relay);
+            }
+
+            xml.parse(body, count => activate(relay, count), () => deactivate(relay));
+        });
     });
-});
+
+    if (push_url)
+        push();
+};
 
 const deactivate = relay => {
     relay.online = false;
@@ -94,6 +100,16 @@ const status = () => {
         listeners: count,
         stream_url: chosen,
     };
+};
+
+const push = () => {
+    let options = {
+        uri: push_url,
+        method: "POST",
+        json: true,
+        body: status()
+    };
+    request(options, (error, res, body) => {});
 };
 
 module.exports = {
